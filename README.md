@@ -62,6 +62,8 @@ npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
 
 Every book directory contains a standard `SKILL.md` entrypoint. The skill loads the corresponding `mini` rule set by default and keeps the `full` file available as deeper reference material.
 
+If you prefer another setup, see [USAGE.md](docs/USAGE.md) for manual, scoped, always-on, editor-specific, and retrieval-based installation patterns.
+
 ## Release Matrix
 
 Metrics:

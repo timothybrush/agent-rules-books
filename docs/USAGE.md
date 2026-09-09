@@ -53,6 +53,30 @@ project/
 
 Keep the active skill concise. Put long examples, full rule files, and traceability material in reference files or retrieval, not in always-on project instructions.
 
+## Install Existing Skills
+
+Each book directory contains a standard `SKILL.md` entrypoint. The skill points at the corresponding `mini` rule set for normal use and keeps the `full` file available as deeper reference material.
+
+Install all book skills with the open Agent Skills CLI:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --all
+```
+
+List available skills without installing:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --list
+```
+
+Install one selected skill:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
+```
+
+Use CLI-installed skills when you want the same package to work across supported agents. Use the manual patterns below when you need tighter control over project scope, always-on behavior, editor-specific rules, or retrieval.
+
 ## Mini vs Nano
 
 `mini` is the optimal default for most agent work and the best starting point for skills. It usually contains enough of the book's decision pressure, trigger rules, and tradeoff handling to change implementation choices without bringing in the full source.
