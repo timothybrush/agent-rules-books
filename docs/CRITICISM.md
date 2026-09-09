@@ -2,7 +2,9 @@
 
 Below is a consolidated list of recurring criticisms and suggestions from the Reddit discussion, ordered from the most valid to the least valid.
 
-Status notes below reflect the repository state on April 26, 2026.
+Status notes below reflect the repository state on September 9, 2026.
+
+Since the original Reddit feedback, the repository has materially addressed the delivery and conflict-management criticisms: it now ships deterministic `full` / `mini` / `nano` releases, per-book traceability, usage guidance for scoped loading, and a formal compatibility matrix with pairwise book comparisons. The main unresolved criticisms are still empirical measurement, project-incident-derived rules, and legal review.
 
 ### 1. There is no clear measurement of improvement
 
@@ -70,9 +72,9 @@ We moved slightly in this direction by making [_rule-workbench/PROCESS.md](../_r
 
 Different books operate at different abstraction levels and sometimes encourage different tradeoffs. For example, rules inspired by Clean Code, Clean Architecture, DDD, DDIA, PoEAA, and A Philosophy of Software Design may push the agent toward different architectural decisions.
 
-**Current status: partially addressed, about 7/10 solved.**
+**Current status: largely addressed, about 9/10 solved.**
 
-This is now addressed much more explicitly in [README.md](../README.md), [USAGE.md](USAGE.md), and [_rule-workbench/PROCESS.md](../_rule-workbench/PROCESS.md). The repo recommends one primary always-on rule set, on-demand secondary rule sets, and source-faithful compression instead of cross-book best-practice aggregation. That greatly reduces accidental mixing. The unresolved part is that the repo still does not provide a formal conflict matrix between books; it relies on loading discipline instead.
+This is now addressed explicitly in [README.md](../README.md), [USAGE.md](USAGE.md), [_rule-workbench/PROCESS.md](../_rule-workbench/PROCESS.md), and the formal [Book Rule Compatibility Matrix](COMPATIBILITY.md). The repo recommends one primary always-on rule set, on-demand secondary rule sets, and source-faithful compression instead of cross-book best-practice aggregation. It also now provides pairwise compatibility notes in [docs/compatibility](compatibility), with each pair marked as complementary, overlapping, or conflicting. The remaining gap is that these compatibility calls are qualitative and source-based, not validated by empirical task runs.
 
 ### 8. The approach may cause overengineering
 
