@@ -15,7 +15,7 @@ Use the smallest mechanism that still changes the agent's decisions.
 - Use `mini` by default when one book should shape the agent's decisions for a specific task.
 - Use `nano` only when the rule set must be extremely small, permanently always-on, or portable across tools with tight context budgets.
 - Use `full` for audits, one-off deep sessions, skill reference files, or for deriving smaller scoped rules.
-- Prefer scoped, on-demand, or retrieval-based loading over global loading.
+- Prefer scoped or on-demand loading over global loading.
 - Treat memories as helpers, not as the canonical source of truth.
 
 ## Delivery Patterns
@@ -26,7 +26,9 @@ Use the smallest mechanism that still changes the agent's decisions.
 | Always-on project rule | Stable defaults that should affect most tasks | `mini` or `nano` | Use one carefully chosen `mini`; use `nano` if `mini` is too large for the tool or project. |
 | Scoped rule | One directory, file type, or subsystem | `mini` or `nano` | Prefer `mini`; use `nano` for tiny path-scoped reminders. |
 | On-demand rule | Refactoring passes, reviews, migrations, reliability work | `mini` | Invoke only when the task matches. |
-| Retrieval or MCP | Large reference material, changing docs, external systems | `full` or source material outside the prompt | Use when the content is too large or too rarely needed for always-on context. |
+| External knowledge system | Large private docs, changing references, or organization-specific knowledge | Outside this repository | Keep it separate from these static rule files. |
+
+For large private documentation or organization-specific knowledge, use your team's existing documentation or search system outside this repository.
 
 ## Skills First
 
@@ -51,7 +53,7 @@ project/
         reference.md    # optional link or copy of refactoring.md
 ```
 
-Keep the active skill concise. Put long examples, full rule files, and traceability material in reference files or retrieval, not in always-on project instructions.
+Keep the active skill concise. Put long examples, full rule files, and traceability material in reference files, not in always-on project instructions.
 
 ## Install Existing Skills
 
@@ -75,7 +77,7 @@ Install one selected skill:
 npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
 ```
 
-Use CLI-installed skills when you want the same package to work across supported agents. Use the manual patterns below when you need tighter control over project scope, always-on behavior, editor-specific rules, or retrieval.
+Use CLI-installed skills when you want the same package to work across supported agents. Use the manual patterns below when you need tighter control over project scope, always-on behavior, or editor-specific rules.
 
 ## Mini vs Nano
 
@@ -121,10 +123,10 @@ This gives you one cross-tool source for the base layer, while still allowing ea
 
 - `AGENTS.md` in the repo root or nested directories
 - `AGENTS.override.md` for closer overrides
-- `.codex/config.toml` with `model_instructions_file`, `project_doc_fallback_filenames`, and project-scoped config
+- `.codex/config.toml` with `project_doc_fallback_filenames`, `project_doc_max_bytes`, project-scoped config, and hooks
 - skills in `.agents/skills/` or `~/.agents/skills/`
 - hooks via `.codex/config.toml` or `hooks.json`
-- MCP servers and web search for external context
+- web search for external context
 - memories for learned preferences
 
 ### Preferred setup
@@ -139,13 +141,13 @@ Preferred order:
 
 1. Turn procedures, checklists, and book-specific workflows into skills.
 2. Use root `AGENTS.md` for the project-wide base layer.
-3. Use `model_instructions_file` if you want Codex to point at a chosen file without renaming it to `AGENTS.md`.
+3. Use `project_doc_fallback_filenames` if you want Codex to read another project instruction filename when `AGENTS.md` is missing.
 4. Add nested `AGENTS.md` or `AGENTS.override.md` only where a subtree genuinely needs different pressure.
-5. Use MCP or retrieval for large reference corpora instead of stuffing them into the always-on file.
+5. Keep large reference corpora out of the always-on file.
 
 ### Recommended version mapping
 
-- `mini`: preferred skill body; also usable as project-wide default in `AGENTS.md` or `model_instructions_file`
+- `mini`: preferred skill body; also usable as project-wide default in `AGENTS.md`
 - `nano`: compact fallback for very tight always-on budgets
 - `full`: skill reference, audit source, or focused-session reference
 
@@ -186,7 +188,6 @@ project/
 - `.claude/skills/<name>/SKILL.md`
 - subagents
 - hooks in settings or scoped to skills
-- MCP resources and prompts
 - auto memory
 
 ### Preferred setup
@@ -251,41 +252,49 @@ Import the shared root `AGENTS.md` baseline by adding this line to `CLAUDE.md` i
 
 ### Available mechanisms
 
+- `.agents/skills/` or `.cursor/skills/` for Agent Skills
 - `.cursor/rules/*.mdc` project rules
-- rule types: `Always`, `Auto Attached`, `Agent Requested`, `Manual`
+- rule types: `Always Apply`, `Apply Intelligently`, `Apply to Specific Files`, `Apply Manually`
 - root `AGENTS.md` as a simple alternative
 - user rules
-- `@Cursor Rules` for explicit rule application
-- `/Generate Cursor Rules`
+- `@rule-name` for explicit manual rule application
+- `/create-rule`, `/create-skill`, and `/migrate-to-skills`
 - memories
 - codebase indexing
-- MCP
 
 ### Preferred setup
 
-Cursor's strongest native mechanism is `.cursor/rules`.
+Cursor supports both Agent Skills and project rules. Use skills for book-specific workflows and `.cursor/rules` for always-on or path-scoped prompt context.
 
 Preferred order:
 
-1. Prefer `.cursor/rules` over `AGENTS.md` for serious use.
-2. Use at most one project-wide `Always` rule derived from `mini` when it stays small enough.
-3. Turn `mini` into `Agent Requested`, `Manual`, or `Auto Attached` rules by topic or path.
-4. Use `@Cursor Rules` when you want explicit on-demand application.
-5. Keep large reference material in attached files, indexed docs, or MCP, not in `Always` rules.
-6. Use root `AGENTS.md` only for simple projects or when you want a portable cross-tool baseline.
-7. Use `nano` only when an `Always` rule must be extremely short.
+1. Use Agent Skills for book-specific workflows such as refactoring, legacy changes, production reviews, and domain modeling.
+2. Prefer `.cursor/rules` over `AGENTS.md` when you need Cursor-specific always-on, intelligent, manual, or file-scoped prompt rules.
+3. Use at most one project-wide `Always Apply` rule derived from `mini` when it stays small enough.
+4. Turn `mini` into `Apply Intelligently`, `Apply Manually`, or `Apply to Specific Files` rules by topic or path.
+5. Use explicit skill invocation or `@rule-name` when you want on-demand application.
+6. Keep large reference material in attached files or indexed docs, not in `Always Apply` rules.
+7. Use root `AGENTS.md` only for simple projects or when you want a portable cross-tool baseline.
+8. Use `nano` only when an always-on rule must be extremely short.
 
 ### Recommended version mapping
 
-- `mini`: short `Always` rule, simple root `AGENTS.md`, or `Agent Requested`, `Manual`, and `Auto Attached` project rules
-- `nano`: compact fallback for very tight `Always` rules
+- `mini`: preferred skill body; also usable as a short `Always Apply` rule, simple root `AGENTS.md`, or `Apply Intelligently`, `Apply Manually`, and `Apply to Specific Files` project rules
+- `nano`: compact fallback for very tight always-on rules
 - `full`: reference only
 
 ### Recommended structure
 
 ```text
 project/
+  .agents/
+    skills/
+      refactoring/
+        SKILL.md
   .cursor/
+    skills/
+      release-it/
+        SKILL.md
     rules/
       base.mdc
       payments.mdc
@@ -295,10 +304,10 @@ project/
 
 Suggested split:
 
-- `base.mdc`: one short `Always` rule derived from `mini`, or from `nano` if the base must be tiny
-- `payments.mdc`: `Auto Attached` for `payments/**`
-- `refactor.mdc`: `Manual` for explicit refactoring passes
-- `ddd.mdc`: `Agent Requested` for modeling-heavy tasks
+- `base.mdc`: one short `Always Apply` rule derived from `mini`, or from `nano` if the base must be tiny
+- `payments.mdc`: `Apply to Specific Files` for `payments/**`
+- `refactor.mdc`: `Apply Manually` for explicit refactoring passes
+- `ddd.mdc`: `Apply Intelligently` for modeling-heavy tasks
 
 ### Use Cursor this way when
 
@@ -308,29 +317,9 @@ Suggested split:
 
 ### Avoid
 
-- using one giant `Always` rule
+- using one giant `Always Apply` rule
 - treating root `AGENTS.md` as the best default for complex projects
-- storing large reference packs in project rules when indexing or MCP is a better fit
-
-## Retrieval, MCP, and RAG
-
-Use retrieval-based delivery when the material is too large, too dynamic, or too rarely needed for always-on context.
-
-Good candidates:
-
-- multiple books at once
-- large examples and templates
-- architecture docs, specs, and runbooks
-- changing external guidance
-- domain documents that matter only for some tasks
-
-Recommended by editor:
-
-- Codex: skills plus MCP or retrieval-backed tools
-- Claude Code: skills plus MCP resources or prompts, optionally with subagents
-- Cursor: scoped project rules plus codebase indexing or MCP
-
-If your team already has a RAG system, keep the long reference material there and only promote decision-changing rules into always-on or scoped prompt rules.
+- storing large reference packs in project rules when indexed docs are a better fit
 
 ## Decision Guide
 
@@ -340,5 +329,5 @@ If your team already has a RAG system, keep the long reference material there an
 - Need stronger guidance for a specific task: load the relevant `mini` rule set as a skill or on-demand rule.
 - Need a multi-step workflow: create a skill or command, with `full` as optional reference.
 - Need subsystem-specific pressure: use scoped rules or nested files.
-- Need long reference material: use retrieval, indexing, or MCP.
+- Need long reference material: keep it out of always-on rules and use your editor's normal docs or indexing flow.
 - Need more than one book: keep one primary always-on rule set and move the rest to on-demand mechanisms.

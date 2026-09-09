@@ -28,7 +28,7 @@ MIT licensed universal project rules for coding agents.
 
 This repository contains ready-to-use rule sets inspired by well-known books on software design, architecture, refactoring, legacy code, reliability, and data-intensive systems.
 
-For editor-specific setup in Codex, Claude Code, and Cursor, see [USAGE.md](docs/USAGE.md). It covers always-on vs on-demand usage, skills, scoped rules, MCP or RAG patterns, and the preferred setup for each editor.
+For editor-specific setup in Codex, Claude Code, and Cursor, see [USAGE.md](docs/USAGE.md). It covers always-on vs on-demand usage, skills, scoped rules, and the preferred setup for each editor.
 
 Each rule set is released in three tool-agnostic Markdown versions:
 
@@ -62,7 +62,7 @@ npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
 
 Every book directory contains a standard `SKILL.md` entrypoint. The skill loads the corresponding `mini` rule set by default and keeps the `full` file available as deeper reference material.
 
-If you prefer another setup, see [USAGE.md](docs/USAGE.md) for manual, scoped, always-on, editor-specific, and retrieval-based installation patterns.
+If you prefer another setup, see [USAGE.md](docs/USAGE.md) for manual, scoped, always-on, and editor-specific installation patterns.
 
 ## Release Matrix
 

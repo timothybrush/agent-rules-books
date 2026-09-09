@@ -24,9 +24,9 @@ Many of the generated rule files contain a large number of individual instructio
 
 **Current status: largely addressed, about 8/10 solved.**
 
-This was addressed through the three-level release model in [README.md](../README.md): `mini` for the recommended working layer, `nano` for very tight always-on budgets, and `full` for reference only. [USAGE.md](USAGE.md) now explicitly recommends the smallest mechanism that still changes agent decisions, warns against global loading, and shows scoped and retrieval-based alternatives. The remaining gap is behavioral rather than structural: the repo cannot stop a user from still attaching too much at once.
+This was addressed through the three-level release model in [README.md](../README.md): `mini` for the recommended working layer, `nano` for very tight always-on budgets, and `full` for reference only. [USAGE.md](USAGE.md) now explicitly recommends the smallest mechanism that still changes agent decisions, warns against global loading, and shows scoped and on-demand alternatives. The remaining gap is behavioral rather than structural: the repo cannot stop a user from still attaching too much at once.
 
-### 3. Skills, RAG, or progressive loading may be better than putting everything into `AGENTS.md`
+### 3. Skills or progressive loading may be better than putting everything into `AGENTS.md`
 
 **Validity: 9/10**
 
@@ -34,7 +34,7 @@ The rules are likely more useful when loaded selectively. Refactoring rules shou
 
 **Current status: largely addressed, about 9/10 solved.**
 
-This criticism directly shaped [USAGE.md](USAGE.md). The repo now recommends progressive loading, scoped rules, skills, nested files, MCP, retrieval, and editor-specific on-demand mechanisms instead of assuming one giant `AGENTS.md`. The current design treats large rule sets as material to be selected, scoped, or retrieved, not dumped globally.
+This criticism directly shaped [USAGE.md](USAGE.md). The repo now recommends progressive loading, scoped rules, skills, nested files, and editor-specific on-demand mechanisms instead of assuming one giant `AGENTS.md`. The current design treats large rule sets as material to be selected or scoped, not dumped globally.
 
 ### 4. A short set of project-specific rules may work better
 
@@ -94,7 +94,7 @@ Software engineering books teach good design, but AI coding agents also need ope
 
 **Current status: partially addressed, about 6/10 solved.**
 
-This is addressed more by delivery and process than by book content. [USAGE.md](USAGE.md) now contains editor-specific guidance for Codex, Claude Code, Cursor, skills, scoped rules, MCP, and retrieval. [_rule-workbench/PROCESS.md](../_rule-workbench/PROCESS.md) is also explicitly agent-centered: it optimizes for changed decisions under context pressure, repeated local choices, and known model shortcuts. Still, the repository is not yet a full AI-agent operations handbook; most substantive rules remain software-engineering-first.
+This is addressed more by delivery and process than by book content. [USAGE.md](USAGE.md) now contains editor-specific guidance for Codex, Claude Code, Cursor, skills, and scoped rules. [_rule-workbench/PROCESS.md](../_rule-workbench/PROCESS.md) is also explicitly agent-centered: it optimizes for changed decisions under context pressure, repeated local choices, and known model shortcuts. Still, the repository is not yet a full AI-agent operations handbook; most substantive rules remain software-engineering-first.
 
 ### 10. Too many abstract rules may lead to pseudo-compliance
 
