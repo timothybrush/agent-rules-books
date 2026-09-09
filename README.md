@@ -11,6 +11,8 @@
   <p align="center">
     <a href="#about">About</a>
     ·
+    <a href="#installation-as-skills">Installation</a>
+    ·
     <a href="#release-matrix">Rules / Skills</a>
     ·
     <a href="#books-list">Books List</a>
@@ -37,6 +39,28 @@ Each rule set is released in three tool-agnostic Markdown versions:
 For constructive criticism from Reddit, see [CRITICISM.md](docs/CRITICISM.md).
 
 For release history, see [CHANGELOG.md](CHANGELOG.md).
+
+## Installation as Skills
+
+Install all book skills with the open Agent Skills CLI:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --all
+```
+
+List available skills without installing:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --list
+```
+
+Install one selected skill:
+
+```sh
+npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
+```
+
+Every book directory contains a standard `SKILL.md` entrypoint. The skill loads the corresponding `mini` rule set by default and keeps the `full` file available as deeper reference material.
 
 ## Release Matrix
 
