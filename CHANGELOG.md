@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6 - 2026-09-09
+
+- Added standard `SKILL.md` entrypoints for every book rule set.
+- Documented Agent Skills installation through `npx skills`.
+- Updated criticism status notes to reflect resolved compatibility and delivery work.
+
 ## v0.5 - 2026-05-04
 
 Commit: [`01d1fab`](https://github.com/ciembor/agent-rules-books/commit/01d1fab)

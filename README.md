@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="books-ai-rules.png" alt="AI agent rules from programming books" />
-  <h1 align="center">AI agents Rules / Skills from<br />Programming Books v0.5</h1>
+  <h1 align="center">AI agents Rules / Skills from<br />Programming Books v0.6</h1>
 
   <p align="center">
     <strong>AGENTS.md rules</strong> / <strong>skills</strong> for <strong>Codex</strong>, <strong>Cursor</strong>, <strong>Claude Code</strong>, distilled from classic <strong>software engineering books</strong> about refactoring, architecture, DDD and code quality.
