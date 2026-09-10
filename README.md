@@ -43,23 +43,31 @@ For release history, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Installation as Skills
 
+Prerequisite: install Node.js with npm. You can run the CLI through `npx` without a separate install, or install it globally first:
+
+```sh
+npm install -g skills
+```
+
 Install all book skills with the open Agent Skills CLI:
 
 ```sh
-npx skills add https://github.com/ciembor/agent-rules-books --all
+npx skills add ciembor/agent-rules-books --all
 ```
 
 List available skills without installing:
 
 ```sh
-npx skills add https://github.com/ciembor/agent-rules-books --list
+npx skills add ciembor/agent-rules-books --list
 ```
 
 Install one selected skill:
 
 ```sh
-npx skills add https://github.com/ciembor/agent-rules-books --skill refactoring
+npx skills add ciembor/agent-rules-books --skill refactoring
 ```
+
+`skills.sh` counts real installs reported by the Skills CLI. `--list` only lists available skills and does not install them.
 
 Every book directory contains a standard `SKILL.md` entrypoint. The skill loads the corresponding `mini` rule set by default and keeps the `full` file available as deeper reference material.
 
