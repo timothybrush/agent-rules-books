@@ -83,8 +83,6 @@ Install one selected skill:
 npx skills add ciembor/agent-rules-books --skill refactoring
 ```
 
-`skills.sh` counts real installs reported by the Skills CLI. `--list` only lists available skills and does not install them.
-
 Use CLI-installed skills when you want the same package to work across supported agents. Use the manual patterns below when you need tighter control over project scope, always-on behavior, or editor-specific rules.
 
 ## Mini vs Nano

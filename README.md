@@ -67,8 +67,6 @@ Install one selected skill:
 npx skills add ciembor/agent-rules-books --skill refactoring
 ```
 
-`skills.sh` counts real installs reported by the Skills CLI. `--list` only lists available skills and does not install them.
-
 Every book directory contains a standard `SKILL.md` entrypoint. The skill loads the corresponding `mini` rule set by default and keeps the `full` file available as deeper reference material.
 
 If you prefer another setup, see [USAGE.md](docs/USAGE.md) for manual, scoped, always-on, and editor-specific installation patterns.
