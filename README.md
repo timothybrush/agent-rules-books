@@ -43,11 +43,7 @@ For release history, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Installation as Skills
 
-Prerequisite: install Node.js with npm. You can run the CLI through `npx` without a separate install, or install it globally first:
-
-```sh
-npm install -g skills
-```
+Prerequisite: install Node.js with npm. You can run the Skills CLI through `npx` without installing `skills` separately.
 
 Install all book skills with the open Agent Skills CLI:
 

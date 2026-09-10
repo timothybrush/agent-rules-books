@@ -59,11 +59,7 @@ Keep the active skill concise. Put long examples, full rule files, and traceabil
 
 Each book directory contains a standard `SKILL.md` entrypoint. The skill points at the corresponding `mini` rule set for normal use and keeps the `full` file available as deeper reference material.
 
-Prerequisite: install Node.js with npm. You can run the CLI through `npx` without a separate install, or install it globally first:
-
-```sh
-npm install -g skills
-```
+Prerequisite: install Node.js with npm. You can run the Skills CLI through `npx` without installing `skills` separately.
 
 Install all book skills with the open Agent Skills CLI:
 
